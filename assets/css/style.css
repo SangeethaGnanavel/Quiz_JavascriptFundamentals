@@ -1,0 +1,20 @@
+* {
+  font-size: 14px;
+}
+#start,
+#goBack,
+#submit {
+  font-size: 10px;
+  width: fit-content;
+}
+#choice-list_1,
+#choice-list_2,
+#choice-list_3,
+#choice-list_4 {
+  background-color: #3c2655;
+  color: white;
+  margin-bottom: 3px;
+  width: fit-content;
+  border-radius: 2px;
+  padding: 0 2px;
+}

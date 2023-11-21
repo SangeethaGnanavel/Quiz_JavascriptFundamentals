@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz on Javascript Fundamentals</title>
+    <link rel="stylesheet" href="./assets/css/style.css" />
+  </head>
+  <body>
+    <p class="timer">Timer 10</p>
+    <div class="User-Info">
+      <h4>Quiz on Jacascript fundamentals</h4>
+      <button id="start">Start Quiz</button>
+    </div>
+    <div class="quiz-content">
+      <h3 class="question"></h3>
+      <ol class="ol">
+        <li id="choice-list_1"></li>
+        <li id="choice-list_2"></li>
+        <li id="choice-list_3"></li>
+        <li id="choice-list_4"></li>
+      </ol>
+      <hr />
+      <label id="answer-selection"></label>
+    </div>
+    <div class="score-board">
+      <form>
+        <h3>All Done</h3>
+        <p>Your final score is:<span id="final-score"></span></p>
+        <label text="">Enter Initials: </label>
+        <input id="initial" type="text" value="" />
+        <button id="submit">Submit</button>
+      </form>
+    </div>
+    <div class="high-score-cont">
+      <h3>High Scores</h3>
+      <label id="highscore"></label>
+      <button id="goBack">Go Back</button>
+    </div>
+    <script src="./assets/js/script.js"></script>
+  </body>
+</html>
