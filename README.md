@@ -23,6 +23,7 @@ To develop timed Quiz on Javascript fundamentals that stores high score of the u
 ![Alt text](4_screen.png)
 
 ## URL
+https://sangeethagnanavel.github.io/Quiz_JavascriptFundamentals/
 
 # Author
 
