@@ -1,3 +1,4 @@
+// Declare global variables and assign class or Id elements to the variables
 let timer = document.querySelector(".timer");
 let userInfo = document.querySelector(".User-Info");
 let startButton = document.querySelector("#start");
@@ -17,37 +18,64 @@ let highscore_lbl = document.getElementById("highscore");
 let highscore_E1 = document.querySelector(".high-score-cont");
 
 let questionNumber = 0;
-let secondsLeft = 10;
+let secondsLeft = 20;
 let score = 0;
 let lastQuestion = false;
-
+//  Set of Question stored in Array
 let questionArray = [
-  "Question Number 0",
-  "Question Number 1",
-  "Question Number 2",
-  "Question Number 3",
-  "Question Number 4",
+  "Where is the correct place to insert a JavaScript?",
+  'What is the correct syntax for referring to an external script called "xxx.js"?',
+  'How do you write "Hello World" in a alert box ',
+  'How do you call a function named "myFunction"?',
+  "What is the syntax of FOR loop?",
 ];
-let answerOptions_Q0 = ["Answer 1", "Answer 2", "Answer 3", "Answer 4"];
-let correctAnswer_Q0 = "Answer 1";
-let answerOptions_Q1 = ["Answer 11", "Answer 12", "Answer 13", "Answer 14"];
-let correctAnswer_Q1 = "Answer 12";
-let answerOptions_Q2 = ["Answer 21", "Answer 22", "Answer 23", "Answer 24"];
-let correctAnswer_Q2 = "Answer 23";
-let answerOptions_Q3 = ["Answer 31", "Answer 32", "Answer 33", "Answer 34"];
-let correctAnswer_Q3 = "Answer 33";
-let answerOptions_Q4 = ["Answer 41", "Answer 42", "Answer 43", "Answer 44"];
-let correctAnswer_Q4 = "Answer 44";
+//  Answer option to each question stored in different array
+let answerOptions_Q0 = [
+  "Either <head> or <body> section",
+  "<head> section",
+  "<body> section",
+  "None",
+];
+let answerOptions_Q1 = [
+  '<script name="xxx.js">',
+  '<script href="xxx.js">',
+  '<script src="xxx.js">',
+  '<script link="xxx.js">',
+];
+let answerOptions_Q2 = [
+  'msgBox("Hello World")',
+  'alertBox("Hello World")',
+  'alert("Hello World")',
+  'msg("Hello World")',
+];
+let answerOptions_Q3 = [
+  "myFunction()",
+  "call myFunction()",
+  "call function myFunction()",
+  "All the above",
+];
+let answerOptions_Q4 = [
+  "for(let i=0;i<=5;i++)",
+  "for( i=0;i<=5)",
+  "for( 1 to 5)",
+  "for(i<=5;i++)",
+];
+// Correct options to each question stored in string varibale
+let correctAnswer_Q0 = "<body> section";
+let correctAnswer_Q1 = '<script src="xxx.js">';
+let correctAnswer_Q2 = 'alert("Hello World")';
+let correctAnswer_Q3 = "myFunction()";
+let correctAnswer_Q4 = "for(let i=0;i<=5;i++)";
 
+// function called during page load
 function init() {
   orderedList.setAttribute("style", "visibility:hidden");
   timer.setAttribute("style", "visibility:show;text-align:right");
-
   highscore_E1.setAttribute("style", "visibility:hidden");
   scoreBoard.setAttribute("style", "visibility:hidden");
   userInfo.setAttribute("style", "visibility:show");
 }
-
+// function to display question and answer options in sequence
 function DisplayOptions(questionNumber) {
   if (questionNumber == 0) {
     question.textContent = questionArray[0];
@@ -79,15 +107,15 @@ function DisplayOptions(questionNumber) {
     choice_2.textContent = answerOptions_Q4[1];
     choice_3.textContent = answerOptions_Q4[2];
     choice_4.textContent = answerOptions_Q4[3];
-    lastQuestion = true;
-  }
+  } else lastQuestion = true;
 }
-
+// timer count down starts on click of startQuiz button, sequence of questions and answer options gets displayed
 startButton.addEventListener("click", function () {
   userInfo.setAttribute("style", "visibility:hidden");
   DisplayOptions(0);
   quizContent.setAttribute("style", "visibility:show");
   orderedList.setAttribute("style", "visibility:show");
+
   let timerInterval = setInterval(function () {
     timer.textContent = "Timer " + secondsLeft;
     secondsLeft--;
@@ -97,12 +125,16 @@ startButton.addEventListener("click", function () {
       quizContent.setAttribute("style", "visibility:hidden");
       userInfo.setAttribute("style", "visibility:hidden");
       scoreBoard.setAttribute("style", "visibility:show");
+      timer.textContent = "Timer " + secondsLeft;
       finalScore.textContent = score;
       clearInterval(timerInterval);
     }
   }, 1000);
 });
+
+//Validation of selected option
 orderedList.addEventListener("click", function (event) {
+  event.preventDefault();
   chosenOption = event.target.textContent;
 
   if (questionNumber == 0 && chosenOption == correctAnswer_Q0) {
@@ -125,6 +157,7 @@ orderedList.addEventListener("click", function (event) {
   questionNumber++;
   DisplayOptions(questionNumber);
 });
+// display the high score
 function DisplayHighscore() {
   scoreBoard.setAttribute("style", "visibility:hidden");
   highscore_E1.setAttribute("style", "visibility:show");
@@ -137,6 +170,8 @@ function DisplayHighscore() {
     }
   }
 }
+
+// compare the current score with the high score stored in localstorage.
 sumbit.addEventListener("click", function (event) {
   event.preventDefault();
 
@@ -157,7 +192,8 @@ sumbit.addEventListener("click", function (event) {
   }
   DisplayHighscore();
 });
-goBack.addEventListener("click", function (event) {
+
+goBack.addEventListener("click", function () {
   location.reload();
 });
 
